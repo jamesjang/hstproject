@@ -24,7 +24,7 @@ class ViewDrive extends Component {
 
 
     componentDidMount() {
-        fetch('http://hstapi.herokuapp.com/api/drive/all')
+        fetch('https://hstapi.herokuapp.com/api/drive/all')
         .then(response => response.json())
         .then(data =>
           this.setState({driveData : data})
