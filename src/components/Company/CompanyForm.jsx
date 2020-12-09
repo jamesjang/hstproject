@@ -50,7 +50,7 @@ class CompanyForm extends Component {
                 companyNumber: companyNumber,
               })
         };
-        fetch('http://hstapi.herokuapp.com/api/company/update/' + companyName, requestOptions)
+        fetch('https://hstapi.herokuapp.com/api/company/update/' + companyName, requestOptions)
         .then(response => response.json())
         .then(function(data) {
             return new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ class CompanyForm extends Component {
                 companyName: companyName
               })
         };
-        fetch('http://hstapi.herokuapp.com/api/company/remove', requestOptions)
+        fetch('https://hstapi.herokuapp.com/api/company/remove', requestOptions)
         .then(response => response.json())
         .then(function(data) {
             return new Promise((resolve, reject) => {
@@ -94,7 +94,7 @@ class CompanyForm extends Component {
                 reserved: ''
             })
         };
-        fetch('http://hstapi.herokuapp.com/api/company/new', requestOptions)
+        fetch('https://hstapi.herokuapp.com/api/company/new', requestOptions)
         .then(response => response.json())
         .then(function(data) {
             return new Promise((resolve, reject) => {

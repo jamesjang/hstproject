@@ -95,7 +95,7 @@ class DatabaseEdit extends Component {
               })
         };
         console.log(requestOptions);
-        fetch('http://hstapi.herokuapp.com/api/hscode/update/' + id, requestOptions)
+        fetch('https://hstapi.herokuapp.com/api/hscode/update/' + id, requestOptions)
             .then(response => response.json())
             .then(function(data) {
                 document.getElementById("분류코드").value = "";

@@ -51,7 +51,7 @@ class ImportDB extends Component {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                 };
-                fetch('http://hstapi.herokuapp.com/api/hscode/reset/all', requestOptions).
+                fetch('https://hstapi.herokuapp.com/api/hscode/reset/all', requestOptions).
                 then(function(response) {
                     return response.json();
                 }).then(function() {
@@ -97,7 +97,7 @@ class ImportDB extends Component {
                                 운송비: item.운송비
                               })
                             };
-                            fetch('http://hstapi.herokuapp.com/api/hscode/new', requestOptions)
+                            fetch('https://hstapi.herokuapp.com/api/hscode/new', requestOptions)
                             .then(response => response.json())
                             .then(function(response) {
 

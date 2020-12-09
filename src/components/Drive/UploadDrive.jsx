@@ -75,7 +75,7 @@ function mapDataToTransportInfo(data) {
       };
   
       return new Promise((resolve, reject) => {
-          fetch('http://hstapi.herokuapp.com/api/drive/upload', requestOptions)
+          fetch('https://hstapi.herokuapp.com/api/drive/upload', requestOptions)
           .then(function(response) {
             console.log(response)
           }).then(() => {
@@ -104,7 +104,7 @@ class UploadDrive extends Component {
     componentDidMount() {
         var optionDatas = [];
         var options = [];
-        const res = fetch('http://hstapi.herokuapp.com/api/company/all')
+        const res = fetch('https://hstapi.herokuapp.com/api/company/all')
         .then(response => response.json())
         .then(function(response) {
           options = response.map(item => ({
@@ -178,7 +178,7 @@ class UploadDrive extends Component {
   
           }).then(() => {
             return new Promise((resolve, reject) => {
-              fetch('http://hstapi.herokuapp.com/api/company/getid/' + queryInfo).then(function(response) {
+              fetch('https://hstapi.herokuapp.com/api/company/getid/' + queryInfo).then(function(response) {
                 return response.json();
               }).then(response => 
                 requestedInfo = response
@@ -200,7 +200,7 @@ class UploadDrive extends Component {
               var proccessed = 0;
 
               exceljsonObj.forEach( function(item) {
-                fetch('http://hstapi.herokuapp.com/api/hscode/getid/' + item.옵션관리코드).then(function(response) {
+                fetch('https://hstapi.herokuapp.com/api/hscode/getid/' + item.옵션관리코드).then(function(response) {
                   return response.json();
                 }).then(function(response) {
                 console.log(response);

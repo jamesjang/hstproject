@@ -28,7 +28,7 @@ class Database extends Component {
       };
   }
   componentDidMount() {
-    fetch(`http://hstapi.herokuapp.com/api/hscode/all`)
+    fetch(`https://hstapi.herokuapp.com/api/hscode/all`)
     .then(response => response.json())
     .then(data => { 
       this.setState({tabledata : data})
