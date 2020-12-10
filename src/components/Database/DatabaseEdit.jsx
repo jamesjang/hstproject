@@ -118,8 +118,36 @@ class DatabaseEdit extends Component {
 
     }
 
-    onDeleteDBValue(value) {
-
+    onNewDBItem(event) {
+        const requestOptions = {
+            method: 'Post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                분류코드: document.getElementById("분류코드").value,
+                품목코드: document.getElementById("품목코드").value,
+                품목명: document.getElementById("품목명").value,
+                제품설명: document.getElementById("제품설명").value,
+                품목코드_정산용: document.getElementById("품목코드_정산용").value,
+                HS_CODE: document.getElementById("HS_CODE").value,
+                Netto: document.getElementById("Netto").value,
+                통관단가: document.getElementById("통관단가").value,
+                공급단가: document.getElementById("공급단가").value,
+                공급단가_1: document.getElementById("공급단가_1").value,
+                공급단가_2: document.getElementById("공급단가_2").value,
+                구매세율: document.getElementById("구매세율").value,
+                내수세율: document.getElementById("내수세율").value,
+                무게: document.getElementById("무게").value,
+                유로단가: document.getElementById("유로단가").value,
+                운송비: document.getElementById("운송비").value
+              })
+        };
+        console.log(requestOptions);
+        fetch('https://hstapi.herokuapp.com/api/hscode/new', requestOptions)
+            .then(response => response.json())
+            .then(function(data) {
+                setTimeout(function(){window.location.reload(true); }, 2500);
+        })
+    
     }
 
 
@@ -222,7 +250,7 @@ class DatabaseEdit extends Component {
                     Update
                 </Button>
 
-                <Button style ={{ 'marginTop' : '10px', 'width' : "40%"}} bsStyle="info" fill type="submit" onClick={this.onUpdateDBValue.bind(this)}>
+                <Button style ={{ 'marginTop' : '10px', 'width' : "40%"}} bsStyle="info" fill type="submit" onClick={this.onNewDBItem.bind(this)}>
                     New Item
                 </Button>
                 </Row>
