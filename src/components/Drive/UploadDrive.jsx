@@ -55,6 +55,12 @@ function mapDataToTransportInfo(data) {
       var today = new Date();
   
       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      const min = 1;
+      const max = 1000;
+      const rand = min + Math.random() * (max - min);
+
+    
+      var fileName = date +"_" +rand+ "_LT_File.xlsx"
   
       data.forEach(function(item){
         XLSX.utils.sheet_add_aoa(ws1, [item], {origin: -1});
@@ -63,7 +69,8 @@ function mapDataToTransportInfo(data) {
       var dataJson = XLSX.utils.sheet_to_json(ws1, {defval:""}, function(error){
         console.log('finito');
       });
-  
+      XLSX.writeFile(wb,fileName);
+
       return dataJson;
     }).then(function(dataJson) {
       console.log(dataJson);
@@ -136,15 +143,37 @@ class UploadDrive extends Component {
           return;
         }
 
-        if (typeof(this.state.SelectedCompany[0]) === 'undefined')
+        //console.log('company value' + this.state.selectedCompany[0].value)
+
+
+
+        if (typeof(this.state.selectedShop) === 'undefined')
         {
-            alert("Select a Company");
-          console.log('no company')
+          alert("Select a Shop");
+          console.log('no Shop')
           return;
         }
-        var that = this;
-        console.log(this.state.SelectedCompany[0].value)
 
+        if (typeof(this.state.pricePoint) == 'undefined')
+        {          
+          alert("Select 공급단가");
+          console.log('no 공급단가')
+
+        }
+
+        console.log(this.state.selectedShop);
+
+
+
+        if (typeof(this.state.SelectedCompany) === 'undefined')
+        {
+          alert('select a company');
+          return;
+        }
+        else{
+          console.log(this.state.SelectedCompany)
+        }
+        var that = this;
         console.log('aloha');
         var file = this.state.file;
         var reader = new FileReader();
@@ -334,6 +363,7 @@ class UploadDrive extends Component {
                     <p>Select Shop</p>
                     <Select
                     options ={shopData}
+                    defaultValue = {{ 'label' :shopData[0].label, 'value' : shopData[0].value}}
                     values={[]}
                     onChange={(value) =>this.setState({selectedShop:value})}
                     />
