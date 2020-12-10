@@ -24,28 +24,63 @@ class ViewDrive extends Component {
 
 
     componentDidMount() {
-        fetch('https://hstapi.herokuapp.com/api/drive/all')
-        .then(response => response.json())
-        .then(data =>
-          this.setState({driveData : data})
-        );
+        this.setdriveData();
 
         console.log(this.state.driveData);
 
-        //console.log('date ' + Date.parse('2020-12-09T13:10:49.977Z'));
-        //console.log(Date.parseExact('2020-12-09T13:10:49.977Z'));
         console.log( 'date  ' +  new Date(Date.parse('2020-12-09T13:10:49.977Z')));
     }
 
     parseDate(d) {
         return new Date(Date.parse(d)).toString();
     }
+    onDeleteFile(id) {
+
+        console.log('deleting file' + id);
+        var that = this;
+        
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        };
+
+        fetch('https://hstapi.herokuapp.com/api/drive/remove/' + id, requestOptions)
+            .then(response => response)
+            .then(function(response) {
+                return new Promise((resolve, reject) => {
+                    if (response)
+                    {
+                        resolve();
+
+                        setTimeout(function(){window.location.reload(true); }, 3500);
+                    }
+                })
+            }).then(function(response) {
+                that.setdriveData();
+            })
+
+    }
+
+    setdriveData(){
+        fetch('https://hstapi.herokuapp.com/api/drive/all')
+        .then(response => response.json())
+        .then(data =>
+          this.setState({driveData : data})
+        );
+    }
+
     render () {
         return(
             <div className="content" style={{'height':'500px', overflowY: 'scroll'}}>
                 {this.state.driveData.map(item =>
                 <Row style ={{'marginBottom' : '10px'}}>
+                    <Col md ={7}>
                     <a href ={item.webViewLink} className ='center-text flex'>{item.name} </a> <p style ={{ 'fontSize': '10px'}}>{this.parseDate(item.createdTime)}</p>
+                   
+                        </Col>
+                        <Col md ={2}>
+                        <Button style ={{ 'marginTop' : '10px' , 'width' : '10px', 'height': '10px'}} bsStyle="danger" fill type="submit" onClick={()=> this.onDeleteFile(item.id)}/>
+                        </Col>
                 </Row>
                 )
                  }
