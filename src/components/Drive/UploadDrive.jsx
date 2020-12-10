@@ -135,6 +135,9 @@ class UploadDrive extends Component {
       
     }
 
+    onRoundNumber(value, decimal) {
+      return Number(Math.round(value + 'e' +decimal)+'e-' +decimal);
+    }
     onConvertFile(event) {
         if (this.state.file === null)
         {
@@ -265,8 +268,8 @@ class UploadDrive extends Component {
                   }
                 }
 
-                  console.log('value = '+ valuePrice);
-  
+                  console.log('value = '+ that.onRoundNumber(valuePrice, 2));
+                  valuePrice = that.onRoundNumber(valuePrice, 2);
                   if (!procssedIDs.includes(item.주문번호)) {
                     addBoxCount = 1;
                     procssedIDs.push(item.주문번호);
