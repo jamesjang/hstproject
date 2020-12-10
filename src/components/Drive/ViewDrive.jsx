@@ -45,7 +45,7 @@ class ViewDrive extends Component {
             <div className="content" style={{'height':'500px', overflowY: 'scroll'}}>
                 {this.state.driveData.map(item =>
                 <Row style ={{'marginBottom' : '10px'}}>
-                    <a href ={item.webContentLink} className ='center-text flex'>{item.name} </a> <p style ={{ 'font-size': '10px'}}>{this.parseDate(item.createdTime)}</p>
+                    <a href ={item.webViewLink} className ='center-text flex'>{item.name} </a> <p style ={{ 'font-size': '10px'}}>{this.parseDate(item.createdTime)}</p>
                 </Row>
                 )
                  }
