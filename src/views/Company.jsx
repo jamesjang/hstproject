@@ -26,13 +26,14 @@ class Company extends Component {
       }
 
       componentDidMount() {
+        /*
         fetch(`https://hstapi.herokuapp.com/api/company/all`)
         .then(response => response.json())
         .then(data =>
           this.setState({
             companyData: data,
           })
-        )
+        )*/
       }
 
     render() {

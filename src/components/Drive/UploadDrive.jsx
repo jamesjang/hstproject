@@ -312,9 +312,9 @@ class UploadDrive extends Component {
                     , hsCode
                     ,
                     , itemName
-                    , "$" +valuePrice
+                    , valuePrice
                     , item.수량
-                    , "$" +valuePrice
+                    , valuePrice
                     ,
                     ,
                     ,

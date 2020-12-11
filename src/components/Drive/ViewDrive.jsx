@@ -37,6 +37,8 @@ class ViewDrive extends Component {
     onDeleteFile(id) {
 
         console.log('deleting file' + id);
+        this.setState({driveData: this.state.driveData.filter(data => data.id != id)});
+
         var that = this;
         
         const requestOptions = {
@@ -51,12 +53,10 @@ class ViewDrive extends Component {
                     if (response)
                     {
                         resolve();
-
-                        setTimeout(function(){window.location.reload(true); }, 3500);
                     }
                 })
             }).then(function(response) {
-                that.setdriveData();
+                //that.setdriveData();
             })
 
     }
@@ -67,6 +67,7 @@ class ViewDrive extends Component {
         .then(data =>
           this.setState({driveData : data})
         );
+
     }
 
     render () {

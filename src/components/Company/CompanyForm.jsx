@@ -16,6 +16,35 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 class CompanyForm extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            companyData : []
+        };
+    }
+
+    componentDidMount() {
+
+        if (localStorage.getItem('coco') === null)
+        {
+          fetch(`https://hstapi.herokuapp.com/api/company/all`)
+          .then(response => response.json())
+          .then(data => { 
+            this.setState({companyData : data})
+            localStorage.setItem('coco', JSON.stringify(data));
+    
+            console.log(localStorage.getItem('coco'));
+          });
+        }
+        else{
+          console.log('has local saved');
+          this.setState({companyData : JSON.parse(localStorage.getItem('coco'))});
+        }
+
+       
+    }
+
+    getCompanyData() {
+
     }
     
     changeFormValue(item) {
@@ -24,7 +53,7 @@ class CompanyForm extends Component {
         }
         else
         {
-            var dataObj = this.props.companyData.filter(data => data.companyName == item[0].value);
+            var dataObj = this.state.companyData.filter(data => data.companyName == item[0].value);
             if(typeof dataObj[0] === 'undefined') {
             }
             else {
@@ -40,6 +69,8 @@ class CompanyForm extends Component {
     }
 
     OnUpdateCompany() {
+        var that = this;
+
         var companyName = document.getElementById("companyName").value;
         var companyNumber = document.getElementById("companyNumber").value;
         const requestOptions = {
@@ -56,12 +87,33 @@ class CompanyForm extends Component {
             return new Promise((resolve, reject) => {
                 if (data) {
                     resolve();
-                    window.location.reload(false);
+                    //window.location.reload(false);
                 }
-            })})
+            }
+            ).then(() => {
+                fetch(`https://hstapi.herokuapp.com/api/company/all`)
+                .then(response => response.json())
+                .then(data => {
+                 return new Promise((resolve, reject) => {
+                   that.setState({companyData : data})
+                   localStorage.setItem('coco', JSON.stringify(data));
+                   resolve();
+                   console.log('force updating');
+                 })
+                 that.forceUpdate();
+                }).then(function() {
+                    document.getElementById("companyName").value = "";
+                    document.getElementById("companyNumber").value="";
+                    alert('on updated company');
+                })
+            })
+        
+        })
+
     }
 
     OnDeleteCompany() {
+        var that = this;
         var companyName = document.getElementById("companyName").value;
         const requestOptions = {
             method: 'Delete',
@@ -76,12 +128,30 @@ class CompanyForm extends Component {
             return new Promise((resolve, reject) => {
                 if (data) {
                     resolve();
-                    window.location.reload(false);
+
                 }
-            })})
+            }).then(() => {
+                fetch(`https://hstapi.herokuapp.com/api/company/all`)
+                .then(response => response.json())
+                .then(data => {
+                 return new Promise((resolve, reject) => {
+                   that.setState({companyData : data})
+                   localStorage.setItem('coco', JSON.stringify(data));
+                   resolve();
+                   console.log('force updating');
+                 })
+                 that.forceUpdate();
+                }).then(function() {
+                    document.getElementById("companyName").value = "";
+                    document.getElementById("companyNumber").value="";
+                    alert('deleted company');
+                })
+            })
+        })
     }
 
     OnSubmitNewCompany() {
+        var that = this;
         var companyName = document.getElementById("companyName").value;
         var companyNumber = document.getElementById("companyNumber").value;
 
@@ -100,9 +170,25 @@ class CompanyForm extends Component {
             return new Promise((resolve, reject) => {
                 if (data) {
                     resolve();
-                    window.location.reload(false);
                 }
-            })})
+            }).then(() => {
+                fetch(`https://hstapi.herokuapp.com/api/company/all`)
+                .then(response => response.json())
+                .then(data => {
+                 return new Promise((resolve, reject) => {
+                   that.setState({companyData : data})
+                   localStorage.setItem('coco', JSON.stringify(data));
+                   resolve();
+                   console.log('force updating');
+                 })
+                 that.forceUpdate();
+                }).then(function() {
+                    document.getElementById("companyName").value = "";
+                    document.getElementById("companyNumber").value="";
+                    alert('added new company');
+                })
+            })
+        })
         }
         
     
@@ -113,7 +199,7 @@ class CompanyForm extends Component {
             <Row>
                 <Select     
                     style ={{'marginBottom' : '30px'}}
-                    options={this.props.companyData.map(item => ({
+                    options={this.state.companyData.map(item => ({
                         "value" : item.companyName,
                         "label" : item.companyName
                     }))}
