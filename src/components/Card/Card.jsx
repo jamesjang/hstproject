@@ -34,6 +34,7 @@ export class Card extends Component {
             (this.props.ctTableUpgrade ? " table-upgrade" : "")
           }
         >
+          {this.props.testContent}
           {this.props.content}
 
           <div className="footer">

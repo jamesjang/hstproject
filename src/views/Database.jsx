@@ -27,12 +27,43 @@ class Database extends Component {
         tabledata: []
       };
   }
-  componentDidMount() {
+
+  getDatabseInfo() {
+    console.log('olah');
     fetch(`https://hstapi.herokuapp.com/api/hscode/all`)
     .then(response => response.json())
     .then(data => { 
-      this.setState({tabledata : data})
+      console.log('force updating');
+      return new Promise((resolve, reject) => {
+        this.setState({tabledata : data})
+        localStorage.setItem('hsCodeDB', JSON.stringify(data));
+        resolve();
+        console.log('force updating');
+      })
+      console.log('force updating 11');
+      this.forceUpdate();
     });
+
+
+  }
+  componentDidMount() {
+    //this.getDatabaseInfo();
+    if (localStorage.getItem('hsCodeDB') === null)
+    {
+      fetch(`https://hstapi.herokuapp.com/api/hscode/all`)
+      .then(response => response.json())
+      .then(data => { 
+        this.setState({tabledata : data})
+        localStorage.setItem('hsCodeDB', JSON.stringify(data));
+
+        console.log(localStorage.getItem('hsCodeDB'));
+      });
+    }
+    else{
+      console.log('has local saved');
+      this.setState({tabledata : JSON.parse(localStorage.getItem('hsCodeDB'))});
+    }
+
 
   }
 
@@ -60,8 +91,19 @@ class Database extends Component {
             <Col md={7}>
             <Card
                 title="Display DB"
-                content={                        
-                <DatabaseDisplay test ={this.state.tabledata}/>                     
+                testContent ={
+                  <Row>
+                  <Col md={1}>
+
+                  <Button style ={{ 'marginTop' : '10px' }} bsStyle="info" fill type="submit" 
+                  onClick={this.getDatabseInfo.bind(this)}>
+                    GET DB
+                  </Button>
+                  </Col>
+                  </Row>
+                }
+                content={                   
+                <DatabaseDisplay test ={this.state.tabledata}/>           
                 }
               />
             </Col>
