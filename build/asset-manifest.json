@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c3322a3.chunk.css",
+    "main.js": "/static/js/main.6736e724.chunk.js",
+    "main.js.map": "/static/js/main.6736e724.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.f525820a.chunk.css": "/static/css/2.f525820a.chunk.css",
+    "static/js/2.01c33455.chunk.js": "/static/js/2.01c33455.chunk.js",
+    "static/js/2.01c33455.chunk.js.map": "/static/js/2.01c33455.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.65e5fee92765763e75079c6dede306cc.js": "/precache-manifest.65e5fee92765763e75079c6dede306cc.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.f525820a.chunk.css.map": "/static/css/2.f525820a.chunk.css.map",
+    "static/css/main.3c3322a3.chunk.css.map": "/static/css/main.3c3322a3.chunk.css.map",
+    "static/media/pe-icon-7-stroke.css": "/static/media/Pe-icon-7-stroke.c45f7de0.svg",
+    "static/media/face-3.jpg": "/static/media/face-3.ce7a6b79.jpg",
+    "static/media/bootstrap.min.css": "/static/media/glyphicons-halflings-regular.fa277232.woff",
+    "static/media/reactlogo.png": "/static/media/reactlogo.9b864b36.png",
+    "static/media/sidebar-3.jpg": "/static/media/sidebar-3.34535b95.jpg"
+  }
+}
