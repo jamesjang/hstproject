@@ -12,6 +12,7 @@ import {
   } from "react-bootstrap";
 import Select from 'react-dropdown-select';
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+import { BASE_API_URL } from "constants.js";
 
 class DatabaseEdit extends Component {
     constructor(props) {
@@ -95,7 +96,7 @@ class DatabaseEdit extends Component {
               })
         };
         console.log(requestOptions);
-        fetch('https://hstapi.herokuapp.com/api/hscode/update/' + id, requestOptions)
+        fetch(BASE_API_URL + "hscode/update/" + id, requestOptions)
             .then(response => response.json())
             .then(function(data) {
                 document.getElementById("분류코드").value = "";
@@ -142,7 +143,7 @@ class DatabaseEdit extends Component {
               })
         };
         console.log(requestOptions);
-        fetch('https://hstapi.herokuapp.com/api/hscode/new', requestOptions)
+        fetch(BASE_API_URL + "hscode/new", requestOptions)
             .then(response => response.json())
             .then(function(data) {
                 setTimeout(function(){window.location.reload(true); }, 2500);

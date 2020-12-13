@@ -12,6 +12,7 @@ import {
   } from "react-bootstrap";
 import Select from 'react-dropdown-select';
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+import { BASE_API_URL } from "constants.js";
 
 class CompanyForm extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class CompanyForm extends Component {
 
         if (localStorage.getItem('coco') === null)
         {
-          fetch(`https://hstapi.herokuapp.com/api/company/all`)
+          fetch(BASE_API_URL + "company/all")
           .then(response => response.json())
           .then(data => { 
             this.setState({companyData : data})
@@ -81,7 +82,7 @@ class CompanyForm extends Component {
                 companyNumber: companyNumber,
               })
         };
-        fetch('https://hstapi.herokuapp.com/api/company/update/' + companyName, requestOptions)
+        fetch(BASE_API_URL + "company/update/" + companyName, requestOptions)
         .then(response => response.json())
         .then(function(data) {
             return new Promise((resolve, reject) => {
@@ -91,7 +92,7 @@ class CompanyForm extends Component {
                 }
             }
             ).then(() => {
-                fetch(`https://hstapi.herokuapp.com/api/company/all`)
+                fetch(BASE_API_URL + "company/all")
                 .then(response => response.json())
                 .then(data => {
                  return new Promise((resolve, reject) => {
@@ -122,7 +123,7 @@ class CompanyForm extends Component {
                 companyName: companyName
               })
         };
-        fetch('https://hstapi.herokuapp.com/api/company/remove', requestOptions)
+        fetch(BASE_API_URL + "company/remove", requestOptions)
         .then(response => response.json())
         .then(function(data) {
             return new Promise((resolve, reject) => {
@@ -131,7 +132,7 @@ class CompanyForm extends Component {
 
                 }
             }).then(() => {
-                fetch(`https://hstapi.herokuapp.com/api/company/all`)
+                fetch(BASE_API_URL +"company/all")
                 .then(response => response.json())
                 .then(data => {
                  return new Promise((resolve, reject) => {
@@ -164,7 +165,7 @@ class CompanyForm extends Component {
                 reserved: ''
             })
         };
-        fetch('https://hstapi.herokuapp.com/api/company/new', requestOptions)
+        fetch(BASE_API_URL + "company/new", requestOptions)
         .then(response => response.json())
         .then(function(data) {
             return new Promise((resolve, reject) => {
@@ -172,7 +173,7 @@ class CompanyForm extends Component {
                     resolve();
                 }
             }).then(() => {
-                fetch(`https://hstapi.herokuapp.com/api/company/all`)
+                fetch(BASE_API_URL + "company/all")
                 .then(response => response.json())
                 .then(data => {
                  return new Promise((resolve, reject) => {

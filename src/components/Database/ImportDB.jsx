@@ -11,7 +11,7 @@ import {
     ControlLabel,
     FormControl
   } from "react-bootstrap";
-  
+import { BASE_API_URL } from "constants.js";
 
 class ImportDB extends Component {
     constructor(props) {
@@ -51,7 +51,7 @@ class ImportDB extends Component {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                 };
-                fetch('https://hstapi.herokuapp.com/api/hscode/reset/all', requestOptions).
+                fetch(BASE_API_URL +"hscode/reset/all", requestOptions).
                 then(function(response) {
                     return response.json();
                 }).then(function() {
@@ -97,7 +97,7 @@ class ImportDB extends Component {
                                 운송비: item.운송비
                               })
                             };
-                            fetch('https://hstapi.herokuapp.com/api/hscode/new', requestOptions)
+                            fetch(BASE_API_URL +"hscode/new", requestOptions)
                             .then(response => response.json())
                             .then(function(response) {
 

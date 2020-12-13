@@ -19,21 +19,11 @@ import CompanyForm from "components/Company/CompanyForm.jsx";
 class Company extends Component {
     constructor() {
         super();
-        this.state = { 
-          companyData :[]
-        };
   
       }
 
       componentDidMount() {
-        /*
-        fetch(`https://hstapi.herokuapp.com/api/company/all`)
-        .then(response => response.json())
-        .then(data =>
-          this.setState({
-            companyData: data,
-          })
-        )*/
+
       }
 
     render() {
@@ -45,7 +35,7 @@ class Company extends Component {
                     <Card 
                         title="Manage Companies"
                         content ={
-                            <CompanyForm companyData = {this.state.companyData}/>
+                            <CompanyForm companyData />
                         }
                     />
                 </Col>

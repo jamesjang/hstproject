@@ -13,6 +13,7 @@ import {
     FormControl
   } from "react-bootstrap";
 import moment from 'moment';
+import { BASE_API_URL } from "constants.js";
 
 class ViewDrive extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class ViewDrive extends Component {
             headers: { 'Content-Type': 'application/json' },
         };
 
-        fetch('https://hstapi.herokuapp.com/api/drive/remove/' + id, requestOptions)
+        fetch(BASE_API_URL + "drive/remove/" + id, requestOptions)
             .then(response => response)
             .then(function(response) {
                 return new Promise((resolve, reject) => {
@@ -62,7 +63,7 @@ class ViewDrive extends Component {
     }
 
     setdriveData(){
-        fetch('https://hstapi.herokuapp.com/api/drive/all')
+        fetch(BASE_API_URL + "drive/all")
         .then(response => response.json())
         .then(data =>
           this.setState({driveData : data})

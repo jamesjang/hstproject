@@ -18,6 +18,7 @@ import DatabaseEdit from "components/Database/DatabaseEdit.jsx";
 import DatabaseDisplay from "components/Database/DatabaseDisplay.jsx"
 
 import avatar from "assets/img/faces/face-3.jpg";
+import { BASE_API_URL } from "constants.js";
 
 class Database extends Component {
 
@@ -30,7 +31,7 @@ class Database extends Component {
 
   getDatabseInfo() {
     console.log('olah');
-    fetch(`https://hstapi.herokuapp.com/api/hscode/all`)
+    fetch(BASE_API_URL +"hscode/all")
     .then(response => response.json())
     .then(data => { 
       console.log('force updating');
@@ -50,7 +51,7 @@ class Database extends Component {
     //this.getDatabaseInfo();
     if (localStorage.getItem('hsCodeDB') === null)
     {
-      fetch(`https://hstapi.herokuapp.com/api/hscode/all`)
+      fetch(BASE_API_URL + "hscode/all")
       .then(response => response.json())
       .then(data => { 
         this.setState({tabledata : data})

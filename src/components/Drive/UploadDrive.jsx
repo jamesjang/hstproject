@@ -12,6 +12,7 @@ import {
     ControlLabel,
     FormControl
   } from "react-bootstrap";
+import { BASE_API_URL } from "constants.js";
 
 var shopData = [
     {
@@ -82,7 +83,7 @@ function mapDataToTransportInfo(data) {
       };
   
       return new Promise((resolve, reject) => {
-          fetch('https://hstapi.herokuapp.com/api/drive/upload', requestOptions)
+          fetch(BASE_API_URL + "drive/upload", requestOptions)
           .then(function(response) {
             console.log(response)
           }).then(() => {
@@ -111,7 +112,7 @@ class UploadDrive extends Component {
     componentDidMount() {
         var optionDatas = [];
         var options = [];
-        const res = fetch('https://hstapi.herokuapp.com/api/company/all')
+        const res = fetch(BASE_API_URL +"company/all")
         .then(response => response.json())
         .then(function(response) {
           options = response.map(item => ({
@@ -210,7 +211,7 @@ class UploadDrive extends Component {
   
           }).then(() => {
             return new Promise((resolve, reject) => {
-              fetch('https://hstapi.herokuapp.com/api/company/getid/' + queryInfo).then(function(response) {
+              fetch(BASE_API_URL + "company/getid/" + queryInfo).then(function(response) {
                 return response.json();
               }).then(response => 
                 requestedInfo = response
@@ -232,7 +233,7 @@ class UploadDrive extends Component {
               var proccessed = 0;
 
               exceljsonObj.forEach( function(item) {
-                fetch('https://hstapi.herokuapp.com/api/hscode/getid/' + item.옵션관리코드).then(function(response) {
+                fetch(BASE_API_URL + "hscode/getid/" + item.옵션관리코드).then(function(response) {
                   return response.json();
                 }).then(function(response) {
                 console.log(response);

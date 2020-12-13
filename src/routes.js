@@ -21,25 +21,25 @@ import Company from "views/Company.jsx";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
+    path: "dashboard",
     name: "Dashboard",
     icon: "pe-7s-cloud-download",
     component: Dashboard,
-    layout: "/admin"
+    layout: "/"
   },
   {
-    path: "/Database",
+    path: "Database",
     name: "Database",
     icon: "pe-7s-server",
     component: Database,
-    layout: "/admin"
+    layout: "/"
   },
   {
-    path: "/Company",
+    path: "Company",
     name: "Company",
     icon: "pe-7s-id",
     component: Company,
-    layout: "/admin"
+    layout: "/"
   }
   /*
   {
